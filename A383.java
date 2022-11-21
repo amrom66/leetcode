@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 public class A383 {
     public boolean canConstruct(String ransomNote, String magazine) {
