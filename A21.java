@@ -1,4 +1,9 @@
 public class A21 {
+    /**
+     * @param list1
+     * @param list2
+     * @return
+     */
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode preHead = new ListNode(-1);
         ListNode pre = preHead;
