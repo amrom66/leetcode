@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class A2042 {
@@ -39,4 +38,20 @@ public class A2042 {
         }
         return true;
     }
+
+    public int[] levelOrder(TreeNode root) {
+        int[] arr = new int[1000];
+        int index = 0;
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        if (root != null) queue.add(root);
+        while (!queue.isEmpty()){
+            TreeNode node = queue.poll();
+            arr[index] = node.val;
+            index ++;
+            if(node.left != null) queue.add(root.left);
+            if(node.right != null) queue.add(root.right);
+        }
+        return Arrays.copyOf(arr, index);
+    }
+
 }
