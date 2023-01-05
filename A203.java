@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Stack;
+
 public class A203 {
 
     //head = [1,2,6,3,4,5,6], val = 6
@@ -18,21 +21,20 @@ public class A203 {
 
         return curr.next;
     }
-}
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+    public ListNode getKthFromEnd(ListNode head, int k) {
+        Stack<ListNode> stack = new Stack<>();
+        while (head != null){
+            stack.push(head);
+            head = head.next;
+        }
+        ListNode tmp = null;
+        while (k >0){
+            tmp = stack.pop();
+            k--;
+        }
+        return tmp;
     }
 }
+
+
