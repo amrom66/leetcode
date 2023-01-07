@@ -45,10 +45,26 @@ public class A203 {
         return Arrays.copyOf(nums,index);
     }
 
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> lists = new ArrayList<List<Integer>>();
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(1);
+        lists.add(list);
+        if(numRows ==1) return lists;
+        for(int i=2; i<=numRows; i++){
+            Integer[] nums = new Integer[i];
+            nums[0] = 1;
+            for(int j=1; j<nums.length-1; j++){
+                nums[j] = lists.get(i-2).get(j-1) + lists.get(i-2).get(j);
+            }
+            nums[nums.length-1] = 1;
+            lists.add(Arrays.asList(nums));
+        }
+        return lists;
+    }
     public static void main(String[] args) {
-        int[] nums1 = new int[]{1000,1000,1000};
-        int[] nums2 = new int[]{1000,1000};
-        int[] out = new A203().intersect(nums1, nums2);
+        List out = new A203().generate(5);
+
     }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
