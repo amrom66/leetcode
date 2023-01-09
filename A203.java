@@ -1,3 +1,5 @@
+import com.sun.source.tree.Tree;
+
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -65,6 +67,38 @@ public class A203 {
     public static void main(String[] args) {
         List out = new A203().generate(5);
 
+    }
+
+    public List<List<Integer>> levelOrder(TreeNode root) {
+       List<List<Integer>> lists = new ArrayList<>();
+       if(root == null) return lists;
+       Queue<TreeNode> queue = new ArrayDeque<>();
+       queue.add(root);
+       while (!queue.isEmpty()){
+           int size = queue.size();
+           List<Integer> list = new ArrayList<>();
+           for(int i=0; i<size; i++){
+               TreeNode node = queue.poll();
+               if(node.left != null) queue.add(node.left);
+               if(node.right != null) queue.add(node.right);
+               list.add(node.val);
+           }
+           if(lists.size() % 2 ==0){
+               lists.add(list);
+           }else {
+               lists.add(help(list));
+           }
+       }
+       return lists;
+    }
+
+    public List<Integer> help(List<Integer> list){
+        for(int i=0; i<list.size()/2; i++){
+            int tmp = list.get(i);
+            list.set(i, list.get(list.size()-1 - i));
+            list.set(list.size()-1-i, tmp);
+        }
+        return list;
     }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
