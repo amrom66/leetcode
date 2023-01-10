@@ -35,8 +35,6 @@ public class Offer {
         return false;
     }
 
-
-
     public boolean isSubStructure(TreeNode A, TreeNode B) {
         return (A!=null && B!=null) && (help_isSubStructure(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));
     }
@@ -44,6 +42,35 @@ public class Offer {
         if(B ==null) return true;
         if(A ==null || A.val != B.val) return false;
         return help_isSubStructure(A.left, B.left) && help_isSubStructure(A.right, B.right);
+    }
+
+    public boolean isSymmetric(TreeNode root) {
+        if(root ==null) return true;
+        return help_isSymmetric(root, root);
+    }
+    public boolean help_isSymmetric(TreeNode left, TreeNode right){
+        if(left == null && right == null) return true;
+        if(left == null || right == null) return false;
+        return (left.val == right.val) && help_isSymmetric(left.left, right.right) && help_isSymmetric(left.right, right.left);
+    }
+
+    ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode headA_copy = headA;
+        ListNode headB_copy = headB;
+        while (headA_copy != headB_copy){
+            headA_copy = headA_copy == null ? headB : headA_copy.next;
+            headB_copy = headB_copy == null ? headA : headB_copy.next;
+        }
+        return headA_copy;
+    }
+
+    public TreeNode mirrorTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode left = mirrorTree(root.left);
+        TreeNode right = mirrorTree(root.right);
+        root.left = right;
+        root.right = left;
+        return root;
     }
 
 }
