@@ -1,3 +1,4 @@
+import com.sun.source.tree.ReturnTree;
 import com.sun.source.tree.Tree;
 
 import java.util.ArrayList;
@@ -37,36 +38,12 @@ public class Offer {
 
 
     public boolean isSubStructure(TreeNode A, TreeNode B) {
-        if(A==null || B==null) return false;
-        List<Integer> list_a = new ArrayList<>();
-        list_a = help_isSubStructure(A, list_a);
-        List<Integer> list_b = new ArrayList<>();
-        list_b = help_isSubStructure(B, list_b);
-
-        for(int i=0; i<list_a.size()-list_a.size(); i++){
-            List<Integer> tmp = list_a.subList(i, i+list_b.size());
-            boolean flag = true;
-            for(int j=0; j<tmp.size(); j++){
-                if(tmp.get(j) != list_b.get(j)) flag = false;
-            }
-            if(flag) return true;
-        }
-        return false;
+        return (A!=null && B!=null) && (help_isSubStructure(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B));
     }
-    public List<Integer> help_isSubStructure(TreeNode root, List<Integer> list){
-        if(root == null) return list;
-        list.add(root.val);
-        if(root.left != null) {
-            help_isSubStructure(root.left, list);
-        }else {
-            list.add(null);
-        }
-        if(root.right != null){
-            help_isSubStructure(root.right, list);
-        }else {
-            list.add(null);
-        }
-        return list;
+    public boolean help_isSubStructure(TreeNode A, TreeNode B){
+        if(B ==null) return true;
+        if(A ==null || A.val != B.val) return false;
+        return help_isSubStructure(A.left, B.left) && help_isSubStructure(A.right, B.right);
     }
 
 }
