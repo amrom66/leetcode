@@ -1,11 +1,17 @@
-import com.sun.source.tree.ReturnTree;
-import com.sun.source.tree.Tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Offer {
+
+    public int maxDepth(TreeNode root) {
+        if(root == null) return 0;
+        return help_maxDepth(root, 1);
+    }
+    public int help_maxDepth(TreeNode root, int level){
+        if(root == null) return level;
+        return Math.max(help_maxDepth(root.left, level+1), help_maxDepth(root.right, level+1));
+    }
+
     public boolean findNumberIn2DArray(int[][] matrix, int target) {
         int length = matrix.length;
         if(length ==0) return false;
@@ -71,6 +77,13 @@ public class Offer {
         root.left = right;
         root.right = left;
         return root;
+    }
+
+    public String reverseWords(String s) {
+        s = s.trim();
+        List<String> wordList = Arrays.asList(s.split("\\s+"));
+        Collections.reverse(wordList);
+        return String.join(" ", wordList);
     }
 
 }
