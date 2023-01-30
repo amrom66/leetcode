@@ -8,7 +8,7 @@ public class A94 {
         return list;
     }
 
-    public void help(TreeNode root, List list){
+    public void help(TreeNode root, List<Integer> list){
         if(root == null) return;
         if(root.left != null) {
             help(root.left, list);
