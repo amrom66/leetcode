@@ -1,6 +1,3 @@
-import com.sun.source.tree.Tree;
-
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class A203 {
@@ -65,8 +62,7 @@ public class A203 {
         return lists;
     }
     public static void main(String[] args) {
-        List out = new A203().generate(5);
-
+        List<List<Integer>> out = new A203().generate(5);
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
