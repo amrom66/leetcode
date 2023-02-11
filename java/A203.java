@@ -62,7 +62,7 @@ public class A203 {
         return lists;
     }
     public static void main(String[] args) {
-        List<List<Integer>> out = new A203().generate(5);
+        
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
