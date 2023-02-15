@@ -27,6 +27,7 @@ public class B78 {
             if(track.contains(nums[i])) continue;
             track.add(nums[i]);
             backTrack(res, nums, index+1, k, track);
+            index = index +1;
             track.remove(track.size()-1);
         }
     }
