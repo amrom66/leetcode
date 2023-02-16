@@ -3,29 +3,22 @@ import java.util.Map;
 
 public class B567 {
     public boolean checkInclusion(String s1, String s2) {
-        Map<Character, Integer> need = new HashMap<>(); //s1用
-        Map<Character, Integer> window = new HashMap<>(); //s2用
-        for(char ch : s1.toCharArray()) need.put(ch, need.getOrDefault(ch, 0)+1);
-
+        Map<Character, Integer> need = new HashMap<>();
+        for(Character ch : s1.toCharArray()){
+            need.put(ch, need.getOrDefault(ch, 0)+1);
+        }
         int left = 0;
-        int right = 0;
-        int valid = 0;
-
-        while(right < s2.length()){
-            char c = s2.charAt(right);
+        int right = left + s1.length();
+        while(right <= s2.length()){
+            Map<Character, Integer> window = new HashMap<>(need);
+            for(int i=left; i<right; i++){
+                if(!window.containsKey(s2.charAt(i))) break;
+                window.put(s2.charAt(i), window.get(s2.charAt(i))-1);
+                if(window.get(s2.charAt(i)) == 0) window.remove(s2.charAt(i));
+            }
+            if(window.size() == 0) return true;
             right ++;
-            if(need.containsKey(c)){
-                window.put(c, window.getOrDefault(c, 0)+1);
-                if(need.get(c).equals(window.get(c))) valid ++;
-            }
-
-            while(right-left == s1.length()){
-                if(valid == need.size()) return true;
-                char d = s2.charAt(left);
-                left ++;
-                if(need.get(d).equals(window.get(d))) valid --;
-                window.put(d, window.getOrDefault(d,0)-1);
-            }
+            left ++;
         }
         return false;
     }
