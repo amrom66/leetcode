@@ -11,17 +11,16 @@ public class B39 {
     }
 
     public void backTrack(List<List<Integer>> res, int[] candidates, int index, int target, List<Integer> track){
-        Integer sum = 0;
-        for(Integer num : track) sum += num;
-        if(sum == target) {
+        if(target == 0){
             res.add(new ArrayList<>(track));
+            return ;
         }
-        if(sum > target){
+        if(target <0 ){
             return ;
         }
         for(int i=index; i<candidates.length; i++){
             track.add(candidates[i]);
-            backTrack(res, candidates, index, target, track);
+            backTrack(res, candidates, index, target-candidates[i], track);
             index ++;
             track.remove(track.size()-1);
         }
