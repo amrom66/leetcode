@@ -1,41 +1,30 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 public class B39 {
+    //candidates = [2,3,6,7], target = 7
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
+        Set<List<Integer>> res = new HashSet<>();
         Arrays.sort(candidates);
-        backTrack(res, candidates, 0, target, new ArrayList<>());
-        return res;
+        backTrack(res, candidates, target, new ArrayList<>());
+
+        return res.stream().toList();
     }
 
-    public void backTrack(List<List<Integer>> res, int[] candidates, int index, int target, List<Integer> track){
+    public void backTrack(Set<List<Integer>> res, int[] candidates, int target, List<Integer> track){
+        if(target < 0) return ;
         if(target == 0){
-            res.add(new ArrayList<>(track));
+            res.add(track.stream().sorted().toList());
             return ;
         }
-        if(target <0 ){
-            return ;
-        }
-        for(int i=index; i<candidates.length; i++){
+
+        for(int i=0; i<candidates.length; i++){
             track.add(candidates[i]);
-            backTrack(res, candidates, index, target-candidates[i], track);
-            index ++;
+            backTrack(res, candidates, target-candidates[i], track);
             track.remove(track.size()-1);
         }
-    }
-
-    public static void main(String[] args) {
-        int[] candidates = {2,3,6,7};
-        int target = 7;
-        List<List<Integer>> res = new B39().combinationSum(candidates, target);
-        res.stream().forEach(re ->{
-            re.stream().forEach(r ->{
-                System.out.print(r + "\t");   
-            });
-            System.out.println();
-        });
     }
     
 }
