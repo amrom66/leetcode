@@ -10,7 +10,7 @@ public class B39 {
         Arrays.sort(candidates);
         backTrack(res, candidates, target, new ArrayList<>());
 
-        return res.stream().toList();
+        return null;
     }
 
     public void backTrack(Set<List<Integer>> res, int[] candidates, int target, List<Integer> track){
