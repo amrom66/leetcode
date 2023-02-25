@@ -16,7 +16,7 @@ public class B95 {
     public void backTrack(List<TreeNode> res, int n, Set<Integer> set, TreeNode track){
         Map<Integer, Integer> map =new HashMap<>();
         for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-            entry.getValue()
+            
         }
     }
 }

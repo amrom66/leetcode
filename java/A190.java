@@ -6,5 +6,6 @@ public class A190 {
         for(int i=0; i<32 && n != 0; i++){
            
         }
+        return 0;
     }
 }
