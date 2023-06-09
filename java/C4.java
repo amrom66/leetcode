@@ -35,9 +35,4 @@ public class C4 {
         return ret;
     }
 
-    public static void main(String[] args) {
-        int[] nums1 = { 1, 2 };
-        int[] nums2 = { 3, 4 };
-        new C4().findMedianSortedArrays(nums1, nums2);
-    }
 }

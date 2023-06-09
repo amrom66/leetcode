@@ -8,23 +8,20 @@ public class B77 {
         return res;
     }
 
-    public void backTrack(List<List<Integer>> res, int n, int k, int index, List<Integer> track){
-        if(track.size() == k) {
+    public void backTrack(List<List<Integer>> res, int n, int k, int index, List<Integer> track) {
+        if (track.size() == k) {
             res.add(new ArrayList<>(track));
-            return ;
+            return;
         }
 
-        for(int i=index; i<=n; i++){
-            if(track.contains(i)) continue;
+        for (int i = index; i <= n; i++) {
+            if (track.contains(i))
+                continue;
             track.add(i);
-            index = index +1;
+            index = index + 1;
             backTrack(res, n, k, index, track);
-            track.remove(track.size()-1);
+            track.remove(track.size() - 1);
         }
 
-    }
-
-    public static void main(String[] args) {
-        new B77().combine(3, 3);
     }
 }
