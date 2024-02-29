@@ -1,4 +1,31 @@
 public class Sort {
+
+    public void insertSort2(int[] nums) {
+        int length = nums.length;
+        for (int i = 1; i < length; i++) {
+            int base = nums[i];
+            int j = i - 1;
+            while (j >= 0 && nums[j] < base) {
+                nums[j + 1] = nums[j];
+                j--;
+            }
+            nums[j + 1] = base;
+        }
+    }
+
+    public void insertSort(int[] nums) {
+        int length = nums.length;
+        for (int i = 1; i < length; i++) {
+            int base = nums[i];
+            int j = i - 1;
+            while (j >= 0 && nums[j] > base) {
+                nums[j + 1] = nums[j];
+                j--;
+            }
+            nums[j + 1] = base;
+        }
+    }
+
     public void quickSort(int[] nums) {
         int length = nums.length;
         quickSort(nums, 0, length - 1);
@@ -67,20 +94,51 @@ public class Sort {
         quickSort(nums, left + 1, end);
     }
 
+    public void bubbleSort(int[] nums) {
+        int length = nums.length;
+        if (length <= 1)
+            return;
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - 1 - i; j++) {
+                if (nums[j] > nums[j + 1]) {
+                    int tmp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = tmp;
+                }
+            }
+        }
+    }
+
+    public void bubbleSort2(int[] nums) {
+        int length = nums.length;
+        if (length <= 1) {
+            return;
+        }
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j < length - 1 - i; j++) {
+                if (nums[j] < nums[j + 1]) {
+                    int tmp = nums[j];
+                    nums[j] = nums[j + 1];
+                    nums[j + 1] = tmp;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int i;
-        int a[] = { 30, 40, 60, 10, 20, 50 };
+        int nums[] = { 30, 40, 60, 10, 20, 50 };
 
         System.out.printf("before sort:");
-        for (i = 0; i < a.length; i++)
-            System.out.printf("%d ", a[i]);
+        for (i = 0; i < nums.length; i++)
+            System.out.printf("%d ", nums[i]);
         System.out.printf("\n");
 
-        new Sort().quickSort2(a);
+        new Sort().insertSort2(nums);
 
         System.out.printf("after  sort:");
-        for (i = 0; i < a.length; i++)
-            System.out.printf("%d ", a[i]);
+        for (i = 0; i < nums.length; i++)
+            System.out.printf("%d ", nums[i]);
         System.out.printf("\n");
     }
 }
