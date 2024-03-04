@@ -55,6 +55,7 @@ public class Sort {
         }
     }
 
+    // 30, 40, 60, 10, 20, 50
     public void insertSort(int[] nums) {
         int length = nums.length;
         for (int i = 1; i < length; i++) {
